@@ -1,10 +1,14 @@
 package pl.testeroprogramowania.tests;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pl.testeroprogramowania.models.Customer;
 import pl.testeroprogramowania.pages.HomePage;
 import pl.testeroprogramowania.pages.OrderDetailsPage;
+
+import java.time.Duration;
 
 public class CheckOutTest extends BaseTest {
 

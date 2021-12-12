@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import pl.testeroprogramowania.utils.Helper;
 
 public class CartPage {
 
@@ -21,6 +22,7 @@ public class CartPage {
 //************************ METHODS: ********************************************
 
     public CheckoutPage openCheckoutPage() {
+        Helper.waitToBeClickable(driver,checkoutBtn);
         checkoutBtn.click();
         return new CheckoutPage(driver);
     }

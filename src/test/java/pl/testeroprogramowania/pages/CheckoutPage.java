@@ -4,8 +4,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pl.testeroprogramowania.models.Customer;
+import pl.testeroprogramowania.utils.Helper;
+
+import java.time.Duration;
 
 public class CheckoutPage {
 
@@ -67,6 +72,7 @@ public class CheckoutPage {
         countrySelect.selectByVisibleText(customer.getCountry());
 
         orderCommentInput.sendKeys(comment);
+        Helper.waitToBeClickable(driver,placeOrderBtn);
         placeOrderBtn.click();
 
         return new OrderDetailsPage(driver);
