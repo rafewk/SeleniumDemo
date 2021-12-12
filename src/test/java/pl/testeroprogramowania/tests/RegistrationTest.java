@@ -15,6 +15,7 @@ public class RegistrationTest extends BaseTest {
         Date date = new Date();
         SimpleDateFormat format = new SimpleDateFormat("ddMMss");
         String email = format.format(date);
+
         WebElement dashboard = new HomePage(driver)
                 .openMyAccountPage()
                 .registerUserValidData("tester" + email + "@wp.pl", "123456tester!")
