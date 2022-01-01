@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import pl.testeroprogramowania.utils.Helper;
 
 public class MyAccountPage {
 
@@ -40,6 +42,7 @@ public class MyAccountPage {
     private void registerUser(String email, String password) {
         emailRegInput.sendKeys(email);
         passwordRegInput.sendKeys(password);
+        Helper.waitToBeClickable(driver,registerBtn);
         registerBtn.click();
     }
 
