@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
 
-public class RegisterUserStepDefs {
+public class StepDefs {
 
     private WebDriver driver;
     private String email;
@@ -69,5 +69,15 @@ public class RegisterUserStepDefs {
     public void errorMessageInformingAboutAlreadyRegisteredEmailAppears() {
         WebElement error = new MyAccountPage(driver).getError();
         Assert.assertTrue(error.getText().contains(" An account is already registered with your email address."));
+    }
+
+    @Given("User is at My Account Page")
+    public void userIsAtMyAccountPage() {
+        new HomePage(driver).openMyAccountPage();
+    }
+
+    @When("User logs in with valid data")
+    public void userLogsInWithValidData() {
+        new MyAccountPage(driver).loginValidData("tester","123456tester!");
     }
 }
