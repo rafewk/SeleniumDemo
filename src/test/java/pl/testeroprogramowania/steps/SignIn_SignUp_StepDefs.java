@@ -43,11 +43,6 @@ public class SignIn_SignUp_StepDefs {
         Assert.assertEquals(dashboard.getText(), "Dashboard");
     }
 
-    @Given("User with email already registered in database")
-    public void userWithEmailAlreadyRegisteredInDatabase() {
-        email = "1tester@wp.pl";
-    }
-
     @Then("Error message informing about already registered email appears")
     public void errorMessageInformingAboutAlreadyRegisteredEmailAppears() {
         WebElement error = new MyAccountPage(DriverFactory.getDriver(Browsers.CHROME)).getError();
@@ -59,9 +54,15 @@ public class SignIn_SignUp_StepDefs {
         new HomePage(DriverFactory.getDriver(Browsers.CHROME)).openMyAccountPage();
     }
 
-    @When("User logs in with valid data")
-    public void userLogsInWithValidData() {
-       loggedUserPage = new HomePage(DriverFactory.getDriver(Browsers.CHROME))
-               .openMyAccountPage().loginValidData("tester","123456tester!");
+
+    @When("User logs in with valid data {string},{string}")
+    public void userLogsInWithValidData(String name, String password) {
+        loggedUserPage = new HomePage(DriverFactory.getDriver(Browsers.CHROME))
+                .openMyAccountPage().loginValidData(name,password);
+    }
+
+    @Given("User with email {string} already registered in database")
+    public void userWithEmailAlreadyRegisteredInDatabase(String email) {
+        this.email=email;
     }
 }

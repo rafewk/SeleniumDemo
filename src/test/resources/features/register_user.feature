@@ -4,6 +4,6 @@ Feature: Registering a new user
     When User register itself
     Then User is redirected to the logged user's page
   Scenario: Registering user with already used email
-    Given User with email already registered in database
+    Given User with email "1tester@wp.pl" already registered in database
     When User register itself
     Then Error message informing about already registered email appears

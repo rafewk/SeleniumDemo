@@ -4,5 +4,5 @@ Feature: Logging into application
     Given User is at My Account Page
 
   Scenario: User logs into app using valid name and password
-    When User logs in with valid data
+    When User logs in with valid data "tester","123456tester!"
     Then User is redirected to the logged user's page

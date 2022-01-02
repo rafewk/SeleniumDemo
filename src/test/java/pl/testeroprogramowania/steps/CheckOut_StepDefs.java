@@ -28,12 +28,6 @@ public class CheckOut_StepDefs {
                 .openProductsListPage();
     }
 
-    @When("User adds a product to the cart")
-    public void userAddsAProductToTheCart() {
-        cartPage = productsListPage.openProductPage("GIT basics")
-                .addProductToCart()
-                .viewCartPage();
-    }
 
     @And("Fills shipping information form")
     public void fillsShippingInformationForm() {
@@ -45,5 +39,12 @@ public class CheckOut_StepDefs {
     public void userIsRedirectedToTheOrderDetailsPage() {
         Assert.assertTrue(orderDetailsPage.getOrderReceivedParagraph().getText().contains("Your order has been received."));
         Assert.assertEquals(orderDetailsPage.getOrderedProductName().getText(), "GIT basics × 1");
+    }
+
+    @When("User adds a product {string} to the cart")
+    public void userAddsAProductToTheCart(String product) {
+        cartPage = productsListPage.openProductPage(product)
+                .addProductToCart()
+                .viewCartPage();
     }
 }
