@@ -1,11 +1,8 @@
-package pl.testeroprogramowania;
+package pl.testeroprogramowania.steps;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pl.testeroprogramowania.pages.HomePage;
@@ -15,26 +12,13 @@ import pl.testeroprogramowania.utils.Browsers;
 import pl.testeroprogramowania.utils.DriverFactory;
 
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.Date;
 
-public class StepDefs {
+public class SignIn_SignUp_StepDefs {
 
-    private WebDriver driver;
     private String email;
+    private LoggedUserPage loggedUserPage;
 
-    @Before
-    public void setUp(){
-        driver = DriverFactory.getDriver(Browsers.CHROME);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-        driver.get("http://seleniumdemo.com/");
-    }
-
-    @After
-    public void tearDown(){
-        driver.quit();
-    }
 
     @Given("User with unique email")
     public void userWithUniqueEmail() {
@@ -45,16 +29,15 @@ public class StepDefs {
     }
 
     @When("User register itself")
-    public void userRegisterItself() {
-        new HomePage(driver)
+    public void userRegisterItself(){
+        loggedUserPage = new HomePage(DriverFactory.getDriver(Browsers.CHROME))
                 .openMyAccountPage()
                 .registerUserValidData(email, "123456tester!");
     }
 
     @Then("User is redirected to the logged user's page")
     public void userIsRedirectedToTheLoggedUserSPage() {
-
-        WebElement dashboard = new LoggedUserPage(driver).getDashboardLink();
+        WebElement dashboard = loggedUserPage.getDashboardLink();
 
         Assert.assertTrue(dashboard.isDisplayed());
         Assert.assertEquals(dashboard.getText(), "Dashboard");
@@ -67,17 +50,18 @@ public class StepDefs {
 
     @Then("Error message informing about already registered email appears")
     public void errorMessageInformingAboutAlreadyRegisteredEmailAppears() {
-        WebElement error = new MyAccountPage(driver).getError();
+        WebElement error = new MyAccountPage(DriverFactory.getDriver(Browsers.CHROME)).getError();
         Assert.assertTrue(error.getText().contains(" An account is already registered with your email address."));
     }
 
     @Given("User is at My Account Page")
     public void userIsAtMyAccountPage() {
-        new HomePage(driver).openMyAccountPage();
+        new HomePage(DriverFactory.getDriver(Browsers.CHROME)).openMyAccountPage();
     }
 
     @When("User logs in with valid data")
     public void userLogsInWithValidData() {
-        new MyAccountPage(driver).loginValidData("tester","123456tester!");
+       loggedUserPage = new HomePage(DriverFactory.getDriver(Browsers.CHROME))
+               .openMyAccountPage().loginValidData("tester","123456tester!");
     }
 }

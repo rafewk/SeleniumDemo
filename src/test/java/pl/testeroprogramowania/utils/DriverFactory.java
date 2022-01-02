@@ -8,21 +8,29 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverFactory {
 
+    private static WebDriver driver;
+
     public static WebDriver getDriver(Browsers browser) {
-        switch (browser) {
-            case CHROME -> {
-                WebDriverManager.chromedriver().setup();
-                return new ChromeDriver();
-            }
-            case FIREFOX -> {
-                WebDriverManager.firefoxdriver().setup();
-                return new FirefoxDriver();
-            }
-            case EDGE -> {
-                WebDriverManager.edgedriver().setup();
-                return new EdgeDriver();
+        if(driver == null) {
+            switch (browser) {
+                case CHROME -> {
+                    WebDriverManager.chromedriver().setup();
+                    driver = new ChromeDriver();
+                }
+                case FIREFOX -> {
+                    WebDriverManager.firefoxdriver().setup();
+                    driver =  new FirefoxDriver();
+                }
+                case EDGE -> {
+                    WebDriverManager.edgedriver().setup();
+                    driver = new EdgeDriver();
+                }
             }
         }
-        return null;
+        return driver;
+    }
+    public static void quitDriver(){
+        driver.quit();
+        driver = null;
     }
 }

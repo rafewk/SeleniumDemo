@@ -11,7 +11,7 @@ public class ProductsListPage {
 
     private WebDriver driver;
 
-    ProductsListPage(WebDriver driver){
+    public ProductsListPage(WebDriver driver){
         PageFactory.initElements(driver,this);
         this.driver = driver;
     }

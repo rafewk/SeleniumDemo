@@ -1,5 +1,6 @@
 package pl.testeroprogramowania.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -39,40 +40,27 @@ public class MyAccountPage {
     }
 //************************ METHODS: ********************************************
 
-    private void registerUser(String email, String password) {
+    private void registerUser(String email, String password){
         emailRegInput.sendKeys(email);
         passwordRegInput.sendKeys(password);
+        Helper.waitToBeVisible(driver, By.name("register"));
         Helper.waitToBeClickable(driver,registerBtn);
         registerBtn.click();
     }
 
-    public LoggedUserPage registerUserValidData(String email, String password) {
+    public LoggedUserPage registerUserValidData(String email, String password){
         registerUser(email, password);
         return new LoggedUserPage(driver);
-    }
-
-    public MyAccountPage registerUserInvalidData(String email, String password) {
-        registerUser(email, password);
-        return this;
     }
 
     public WebElement getError() {
         return Error;
     }
 
-    private void logIn(String username, String password) {
+    public LoggedUserPage loginValidData(String username, String password) {
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         loginBtn.click();
-    }
-
-    public LoggedUserPage loginValidData(String username, String password) {
-        logIn(username, password);
         return new LoggedUserPage(driver);
-    }
-
-    public MyAccountPage loginInvalidData(String username, String password) {
-        logIn(username, password);
-        return this;
     }
 }
