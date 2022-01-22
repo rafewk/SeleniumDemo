@@ -40,15 +40,16 @@ public class MyAccountPage {
     }
 //************************ METHODS: ********************************************
 
-    private void registerUser(String email, String password){
+    private void registerUser(String email, String password) throws InterruptedException {
         emailRegInput.sendKeys(email);
         passwordRegInput.sendKeys(password);
+        Thread.sleep(2000);
         Helper.waitToBeVisible(driver, By.name("register"));
         Helper.waitToBeClickable(driver,registerBtn);
         registerBtn.click();
     }
 
-    public LoggedUserPage registerUserValidData(String email, String password){
+    public LoggedUserPage registerUserValidData(String email, String password) throws InterruptedException {
         registerUser(email, password);
         return new LoggedUserPage(driver);
     }

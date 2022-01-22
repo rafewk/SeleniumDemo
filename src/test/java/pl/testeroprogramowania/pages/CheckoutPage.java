@@ -58,7 +58,7 @@ public class CheckoutPage {
 
 //************************ METHODS: *******************************************
 
-    public OrderDetailsPage fillFormAndPlaceOrder(Customer customer, String comment) {
+    public OrderDetailsPage fillFormAndPlaceOrder(Customer customer, String comment) throws InterruptedException {
         firstNameInput.sendKeys(customer.getFirstName());
         lastNameInput.sendKeys(customer.getLastName());
         companyName.sendKeys(customer.getCompanyName());
@@ -73,6 +73,7 @@ public class CheckoutPage {
 
         orderCommentInput.sendKeys(comment);
         Helper.waitToBeClickable(driver,placeOrderBtn);
+        Thread.sleep(2000);
         placeOrderBtn.click();
 
         return new OrderDetailsPage(driver);

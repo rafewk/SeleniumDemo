@@ -30,7 +30,7 @@ public class CheckOut_StepDefs {
 
 
     @And("Fills shipping information form")
-    public void fillsShippingInformationForm() {
+    public void fillsShippingInformationForm() throws InterruptedException {
         customer = new Customer();
         orderDetailsPage = cartPage.openCheckoutPage().fillFormAndPlaceOrder(customer,"Hello 2022!");
     }

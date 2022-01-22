@@ -29,7 +29,7 @@ public class SignIn_SignUp_StepDefs {
     }
 
     @When("User register itself")
-    public void userRegisterItself(){
+    public void userRegisterItself() throws InterruptedException {
         loggedUserPage = new HomePage(DriverFactory.getDriver(Browsers.CHROME))
                 .openMyAccountPage()
                 .registerUserValidData(email, "123456tester!");

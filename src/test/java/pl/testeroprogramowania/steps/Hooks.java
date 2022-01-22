@@ -16,8 +16,8 @@ public class Hooks {
         DriverFactory.getDriver(Browsers.CHROME).get("http://seleniumdemo.com/");
     }
 
-    /*@After
+    @After
     public void tearDown(){
         DriverFactory.quitDriver();
-    }*/
+    }
 }
