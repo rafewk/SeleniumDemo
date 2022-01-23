@@ -12,7 +12,7 @@ import java.time.Duration;
 
 public class CheckOutTest extends BaseTest {
 
-    //@Test
+    @Test
     public void checkOut() {
         Customer customer = new Customer();
 
