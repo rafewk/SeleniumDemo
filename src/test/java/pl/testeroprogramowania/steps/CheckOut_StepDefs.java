@@ -1,19 +1,17 @@
 package pl.testeroprogramowania.steps;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
+import org.junit.Assert;
 import pl.testeroprogramowania.models.Customer;
-import pl.testeroprogramowania.pages.*;
+import pl.testeroprogramowania.pages.CartPage;
+import pl.testeroprogramowania.pages.HomePage;
+import pl.testeroprogramowania.pages.OrderDetailsPage;
+import pl.testeroprogramowania.pages.ProductsListPage;
 import pl.testeroprogramowania.utils.Browsers;
 import pl.testeroprogramowania.utils.DriverFactory;
-
-import java.time.Duration;
 
 public class CheckOut_StepDefs {
 
