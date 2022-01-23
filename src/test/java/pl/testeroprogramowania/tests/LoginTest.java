@@ -17,7 +17,7 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(dashboard.getText().contains("Dashboard"));
     }
 
-    @Test
+    //@Test
     public void loginWrongDataTest() {
         WebElement error = new HomePage(driver)
                 .openMyAccountPage()
