@@ -13,7 +13,7 @@ public class RegistrationTest extends BaseTest {
     @Test
     public void registerUserTest() {
         Date date = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("ddMMss");
+        SimpleDateFormat format = new SimpleDateFormat("hh.mm.ss");
         String email = format.format(date);
 
         WebElement dashboard = new HomePage(driver)
